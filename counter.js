@@ -1,5 +1,5 @@
 /*
-Author: Bolaji Ajani
+Author: Bolaji Ajani [@BJTheCod3r]
 File: Countdown Timer
 About: This countdown Timer displays days, hours, mins and seconds
 */
