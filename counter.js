@@ -16,7 +16,6 @@ var day = 86400000;
 // check if milliseconds is enough to give days
 if(secs_rem >= 86400000) {
 var days = Math.floor(secs_rem / day);
-//udays = days;
 document.getElementById("days").innerHTML = days;
 var secs_rem = secs_rem % day;
 }
