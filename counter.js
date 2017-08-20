@@ -1,23 +1,22 @@
 /*
-Author: Bolaji Ajani [@BJTheCod3r]
+Author: Bolaji Ajani
 File: Countdown Timer
 About: This countdown Timer displays days, hours, mins and seconds
 */
-
-var date = new Date();
-var tnow = date.getTime();
-var tthen = (1503032494 + (24 * 60 * 60 * 30)) * 1000;
-var secs_rem = tthen - tnow;
-var days = 0;
-var hours = 0;
-var mins = 0;
-var secs = 0;
-var day = 86400000;
+var date = new Date(),
+    tnow = date.getTime(),
+    tthen = (1503032494 + (24 * 60 * 60 * 30)) * 1000,
+    secs_rem = tthen - tnow,
+    days = 0,
+    hours = 0,
+    mins = 0,
+    secs = 0,
+    day = 86400000;
 // check if milliseconds is enough to give days
 if(secs_rem >= 86400000) {
-var days = Math.floor(secs_rem / day);
+  days = Math.floor(secs_rem / day);
 document.getElementById("days").innerHTML = days;
-var secs_rem = secs_rem % day;
+  secs_rem = secs_rem % day;
 }
 
 //check if milliseconds is enough to give hours
