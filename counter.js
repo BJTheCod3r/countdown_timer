@@ -22,23 +22,17 @@ document.getElementById("days").innerHTML = days;
 //check if milliseconds is enough to give hours
 if(secs_rem >= 3600000) {
   hours = Math.floor(secs_rem / 3600000);
-  if(hours == 0 && days != 0) {
-    days -= 1;
-    hours = 24;
-    document.getElementById("days").innerHTML = days;
-  }
   document.getElementById("hours").innerHTML = hours;
   secs_rem = secs_rem % 3600000;
+}
+else if(days > 0) {
+  days -= 1;
+  hours = 24;
 }
 
 //check if milliseconds is enough to give minutes
 if(secs_rem >= 60000) {
   mins = Math.floor(secs_rem / 60000);
-  if(mins == 0 && hours != 0) {
-    hours -= 1;
-    mins = 60;
-    document.getElementById("hours").innerHTML = hours;
-  }
   document.getElementById("mins").innerHTML = mins;
   secs = secs_rem % 60000;
   //milliseconds could be lost
