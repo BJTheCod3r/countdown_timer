@@ -15,14 +15,12 @@ var date = new Date(),
 // check if milliseconds is enough to give days
 if(secs_rem >= 86400000) {
   days = Math.floor(secs_rem / day);
-document.getElementById("days").innerHTML = days;
   secs_rem = secs_rem % day;
 }
 
 //check if milliseconds is enough to give hours
 if(secs_rem >= 3600000) {
   hours = Math.floor(secs_rem / 3600000);
-  document.getElementById("hours").innerHTML = hours;
   secs_rem = secs_rem % 3600000;
 }
 else if(days > 0) {
@@ -33,13 +31,15 @@ else if(days > 0) {
 //check if milliseconds is enough to give minutes
 if(secs_rem >= 60000) {
   mins = Math.floor(secs_rem / 60000);
-  document.getElementById("mins").innerHTML = mins;
   secs = secs_rem % 60000;
   //milliseconds could be lost
   //for more accuracy show the milliseconds
   secs = Math.floor(secs/1000);
-  document.getElementById("secs").innerHTML = secs;
 }
+document.getElementById("days").innerHTML = days;
+document.getElementById("hours").innerHTML = hours;
+document.getElementById("mins").innerHTML = mins;
+document.getElementById("secs").innerHTML = secs;
 
 setInterval(countSecs, 1000);
 function countSecs() {
