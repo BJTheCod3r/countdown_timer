@@ -63,6 +63,8 @@ function countSecs() {
      }
    }
   }
+  if(secs != 0) {
    secs -= 1;
    document.getElementById("secs").innerHTML = secs;
+    }
   }
