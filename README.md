@@ -11,5 +11,6 @@ It will work on any browser that supports JavaScript
 Download the JS file and link to it on your page like you would normally do a JavaScript file.
 
 # Usage
-- in variable 'tthen' the timestamp of a certain date in milliseconds is contained in the variable, change it to the timestamp of the date you want to countdown to.
-- The element ids showing the countdown timer are default to "days", "hours", "mins", and "secs", you can decide to use this or change it to your desired one. Basically, just id the elements in your HTML file as the above or your desired ones.
+- In your HTML file create an element with a particular id, inside the id put four elements that will hold the day, hour, minute, and second. E.g <code><div id='timer'><h1></h1><h1</h1><h1></h1><h1></h1></div>
+- Instantiate class 'countDown' with the id of the timer container and the future date to count down to. e.g. <code> var Timer = new countDown('timer', 'May 14, 2019 23:32:48') </code>
+- Call function runTimer() like so Timer.runTimer() and you're good to go.
