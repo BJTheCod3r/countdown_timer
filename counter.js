@@ -3,68 +3,79 @@ Author: Bolaji Ajani
 File: Countdown Timer
 About: This countdown Timer displays days, hours, mins and seconds
 */
-var date = new Date(),
-    tnow = date.getTime(),
-    tthen = (1503032494 + (24 * 60 * 60 * 30)) * 1000,
-    secs_rem = tthen - tnow,
-    days = 0,
-    hours = 0,
-    mins = 0,
-    secs = 0,
-    day = 86400000;
+var countDown =  function(id, future) {
+  var tnow     = Date.now(),
+      tthen    = new Date(future).getTime(),
+      secs_rem = tthen - tnow,
+      day      = 86400000, // in milliseconds
+      hour     = 3600000,
+      min      = 60000,
+      sec      = 1000,
+      self     = this,
+      selector = document.getElementById(id).children;
+  this.days  = 0;
+  this.hours = 0;
+  this.mins  = 0;
+  this.secs  = 0;
+
 // check if milliseconds is enough to give days
-if(secs_rem >= 86400000) {
-  days = Math.floor(secs_rem / day);
+if(secs_rem >= day) {
+  this.days = Math.floor(secs_rem / day);
   secs_rem = secs_rem % day;
 }
 
 //check if milliseconds is enough to give hours
-if(secs_rem >= 3600000) {
-  hours = Math.floor(secs_rem / 3600000);
-  secs_rem = secs_rem % 3600000;
+if(secs_rem >= hour) {
+  this.hours = Math.floor(secs_rem / hour);
+  secs_rem = secs_rem % hour;
 }
-else if(days > 0) {
-  days -= 1;
-  hours = 24;
+else if(this.days > 0) {
+  this.days -= 1;
+  this.hours = 24;
 }
 
 //check if milliseconds is enough to give minutes
-if(secs_rem >= 60000) {
-  mins = Math.floor(secs_rem / 60000);
-  secs = secs_rem % 60000;
+if(secs_rem >= min) {
+  this.mins = Math.floor(secs_rem / min);
+  secs_rem = secs_rem % min;
   //milliseconds could be lost
   //for more accuracy show the milliseconds
-  secs = Math.floor(secs/1000);
+  this.secs = Math.floor(secs_rem / sec);
 }
-document.getElementById("days").innerHTML = days;
-document.getElementById("hours").innerHTML = hours;
-document.getElementById("mins").innerHTML = mins;
-document.getElementById("secs").innerHTML = secs;
+//initialize value
+selector[0].innerHTML = this.days;
+selector[1].innerHTML = this.hours;
+selector[2].innerHTML = this.mins;
+selector[3].innerHTML = this.secs;
 
-setInterval(countSecs, 1000);
-function countSecs() {
-  if(secs == 0 && mins != 0) {
-    mins -= 1;
-    document.getElementById("mins").innerHTML = mins;
-    secs = 60;
-    document.getElementById("secs").innerHTML = secs;
-  if(mins == 0 && hours != 0) {
-     hours -= 1;
-     document.getElementById("hours").innerHTML = hours;
-     mins = 60;
-     document.getElementById("mins").innerHTML = mins;
-     if(hours == 0 && days != 0) {
-       days -= 1;
-       hours = 24;
-       document.getElementById("hours").innerHTML = hours;
-       if(days != 0) {
-         document.getElementById("days").innerHTML = days;
-       }
-     }
+this.runTimer = function() {
+  setInterval(self.countSecs, 1000);
+}
+
+this.countSecs = function() {
+  if(self.secs == 0 && self.mins != 0) {
+    self.mins--;
+    selector[2].innerHTML = self.mins;
+    self.secs = 60;
+    selector[3].innerHTML = self.secs;
+  }
+  if(self.mins == 0 && self.hours != 0) {
+     self.hours --;
+     selector[1].innerHTML = self.hours;
+     self.mins = 60;
+     selector[2].innerHTML = self.mins;
    }
-  }
-  if(secs != 0) {
-   secs -= 1;
-   document.getElementById("secs").innerHTML = secs;
+     if(self.hours == 0 && self.days != 0) {
+       self.days--;
+       self.hours = 24;
+       selector[1].innerHTML = self.hours;
+     }
+       if(self.days >= 0) {
+         selector[0].innerHTML = self.days;
+       }
+  if(self.secs != 0) {
+   self.secs--;
+   selector[3].innerHTML = self.secs;
     }
-  }
+ }
+}
